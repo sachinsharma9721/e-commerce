@@ -29,10 +29,12 @@ db.sequelize = sequelize;
 //Models
 db.user = require("../model/user.model")(sequelize, DataTypes);
 db.organization = require("../model/organization.model")(sequelize, DataTypes);
+db.employee = require("../model/employee.model")(sequelize, DataTypes);
 
 //relation
 db.organization.hasMany(db.user, { foreignKey: "orgId" });
 db.user.belongsTo(db.organization, { foreignKey: "orgId" });
+db.employee.belongsTo(db.organization, { foreignKey: "orgId" });
 
 db.sequelize.sync({ force: false });
 
